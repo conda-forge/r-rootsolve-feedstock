@@ -1,4 +1,4 @@
-{% set version = "1.8.2.2" %}
+{% set version = "1.8.2.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rootSolve_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rootSolve/rootSolve_{{ version }}.tar.gz
-  sha256: 0a601146c1040c2d7d7ba3956e01b0924fa8e5de8599b82fde2520f11280f6dc
+  sha256: b5b3d1641642a3fd1279dbd1245f968d2331ac9588d77f872b113f7dc4594ba0
 
 build:
   merge_build_host: true  # [win]
