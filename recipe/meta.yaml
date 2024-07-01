@@ -1,6 +1,5 @@
 {% set version = "1.8.2.4" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-rootsolve
@@ -14,8 +13,7 @@ source:
   sha256: e16a317ea494192e0a5668a18f7eb99675f8edf3b3095861d213bc2590ad385d
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,8 +22,10 @@ requirements:
   build:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
     - {{ compiler('fortran') }}  # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('m2w64_fortran') }}        # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
@@ -36,7 +36,6 @@ requirements:
     - r-base
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
